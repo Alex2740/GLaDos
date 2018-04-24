@@ -69,7 +69,7 @@ class Form extends React.Component {
 
             } else if (matches[3] === 'film' && matches[4].length > 0 && matches[4].replace(/ /g, "").length > 0) {
                 var search = matches[4];
-                var omdbApiUrl = 'http://omdbapi.com/?apikey=4ac2ef70&s=' + search;
+                var omdbApiUrl = 'https://omdbapi.com/?apikey=4ac2ef70&s=' + search;
 
                 var requestOmdb = new XMLHttpRequest();
                 requestOmdb.open('GET', omdbApiUrl);
@@ -89,7 +89,7 @@ class Form extends React.Component {
                 }
             } else if (matches[1] === 'meteo' && matches[2].length > 0 && matches[2].replace(/ /g, "").length > 0) {
                 var city = matches[2];
-                var openWeatherWapUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=fr&appid=64eb78659aea712617898580e5ef45d8';
+                var openWeatherWapUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=fr&appid=64eb78659aea712617898580e5ef45d8';
 
                 var requestOpenWeatherMap = new XMLHttpRequest();
                 requestOpenWeatherMap.open('GET', openWeatherWapUrl);
@@ -168,7 +168,7 @@ class Form extends React.Component {
                             <input className="success button" type="submit" value="Envoyer" />
                         </div>
                         <div className="cell shrink">
-                            <button className="button warning" type="button" onClick={resetDatabase}>Reset</button>
+                            <button className="button warning" type="button" onClick={resetDatabase}>Bite</button>
                         </div>
                         <div className="cell auto"></div>     
                     </div>
