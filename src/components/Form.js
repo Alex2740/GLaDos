@@ -168,7 +168,7 @@ class Form extends React.Component {
                             <input className="success button" type="submit" value="Envoyer" />
                         </div>
                         <div className="cell shrink">
-                            <button className="button warning" type="button" onClick={resetDatabase}>Bite</button>
+                            <button className="button warning" type="button" onClick={resetDatabase}>Reset</button>
                         </div>
                         <div className="cell auto"></div>     
                     </div>

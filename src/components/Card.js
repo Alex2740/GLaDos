@@ -40,7 +40,7 @@ class Card extends React.Component {
         } else if (this.props.details.type === 'movie-search') {
             function getMovie(e, id) {
                 e.preventDefault();
-                var movieUrl = 'http://www.omdbapi.com/?apikey=4ac2ef70&i=' + id;
+                var movieUrl = 'https://www.omdbapi.com/?apikey=4ac2ef70&i=' + id;
                 
                 var request = new XMLHttpRequest();
                 request.open('GET', movieUrl);
@@ -158,7 +158,7 @@ class Card extends React.Component {
                 var spotifyApi = new SpotifyWebApi({
                     clientId: 'c30151145c1c4994a24d528d00ba40fe',
                     clientSecret: '98331a2dd8154f6692b1d098b780e5b8',
-                    redirectUri: 'http://www.example.com/callback'
+                    redirectUri: 'https://www.example.com/callback'
                 });
                 spotifyApi.setAccessToken('BQCaW5U2yoyFeRFDKFPjGFAAlctTjCUweqRfo2pDLw4GiTRtJT-cdBYXYZwa2vhhiIU8NDWboKxh5bSAUmcbQ8wxqpf8jlFMbMcPdq7uX5uxUoZ8VjO_RpyFYxf_yhv79uKWkv_kTA');
                 spotifyApi.getArtist(id)
