@@ -20,7 +20,7 @@ class Form extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const myRegex = /(meteo) ([a-z ]+)|meteo|(film) ([a-z ]+)|(artist) ([a-z ]+)|(pokedex) ([a-z ]+)|faim|joke/;
+        const myRegex = /(meteo) ([a-z ]+)|meteo|(film) ([a-z ]+)|(artist) ([a-z ]+)|(pokemon) ([a-z ]+)|faim|joke/;
         const today = new Date();
         const ref = today.getFullYear().toString() + ((today.getMonth() + 1).toString().length < 2 ? '0' + (today.getMonth() + 1).toString() : (today.getMonth() + 1).toString()) + (today.getDate().toString().length < 2 ? '0' + today.getDate().toString() : today.getDate().toString()) + (today.getHours().toString().length < 2 ? '0' + today.getHours().toString() : today.getHours().toString()) + (today.getMinutes().toString().length < 2 ? '0' + today.getMinutes().toString() : today.getMinutes().toString()) + (today.getSeconds().toString().length < 2 ? '0' + today.getSeconds().toString() : today.getSeconds().toString());
 
@@ -29,7 +29,7 @@ class Form extends React.Component {
             
             console.log(matches);
 
-            if (matches[7] === 'pokedex' && matches[8].length > 0 && matches[8].replace(/ /g, "").length > 0) {
+            if (matches[7] === 'pokemon' && matches[8].length > 0 && matches[8].replace(/ /g, "").length > 0) {
                 var pokemon = matches[8];
                 var options = {
                     protocol: 'https',

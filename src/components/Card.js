@@ -26,7 +26,7 @@ class Card extends React.Component {
                         <div className="cell small-4">
                             Details :
 				  		    Température minimale : {this.props.details.value.temp.max}°C
-                            Température minimale : {this.props.details.value.temp.min}°C
+                            Température maximale : {this.props.details.value.temp.min}°C
                             Wind : {this.props.details.value.wind} m/s
                             Humidity : {this.props.details.value.humidity} %
                             Pressure : {this.props.details.value.pressure} hPa
