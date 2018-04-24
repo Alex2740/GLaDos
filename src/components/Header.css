@@ -1,0 +1,19 @@
+.top-bar {
+    background-color: #9E9E9E;
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+.top-bar::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.top-bar-left {
+    float: left;
+}
+
+.top-bar-right {
+    float: right;
+}
