@@ -10,7 +10,7 @@ class Header extends React.Component {
                         <h2>GLaDOS</h2>
                     </div>
                     <div className="top-bar-right">
-                        <h2>v 0.0.1</h2>
+                        <h2>Accueil</h2>
                     </div>
                 </div>  
             </div>
