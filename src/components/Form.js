@@ -77,15 +77,24 @@ class Form extends React.Component {
                 requestOmdb.send();
                 requestOmdb.onload = function () {
                     var movieResult = requestOmdb.response.Search;
-                    var array = []
-                    for (let index = 0; index < movieResult.length; index++) {
-                        array.push(movieResult[index]); 
+                    if (movieResult !== undefined) {
+                        var array = []
+                        for (let index = 0; index < movieResult.length; index++) {
+                            array.push(movieResult[index]); 
+                        }
+                        
+                        firebase.database().ref('request/' + ref).set({
+                            type: 'movie-search',
+                            value: array
+                        });
+                    } else {
+                        console.error('Pas de film trouvé');
+                        firebase.database().ref('request/' + ref).set({
+                            type: 'error',
+                            value: 'La recherche n\'a pas trouvée de film pour : ' + search
+                        });
                     }
                     
-                    firebase.database().ref('request/' + ref).set({
-                        type: 'movie-search',
-                        value: array
-                    });
                 }
             } else if (matches[1] === 'meteo' && matches[2].length > 0 && matches[2].replace(/ /g, "").length > 0) {
                 var city = matches[2];
