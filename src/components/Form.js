@@ -132,7 +132,6 @@ class Form extends React.Component {
                 requestJoke.send();
                 requestJoke.onload = function () {
                     var joke = requestJoke.response.attachments[0].text;
-                    console.log(joke);
                     
                     firebase.database().ref('request/' + ref).set({
                         type: 'joke',

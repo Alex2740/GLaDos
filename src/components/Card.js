@@ -46,6 +46,8 @@ class Card extends React.Component {
                 request.open('GET', movieUrl);
                 request.responseType = 'json';
                 request.send();
+                console.log(window.location);
+                
                 request.onload = function () {
                     var movie = request.response;
                     const ref = firebase.database().ref('/');
@@ -54,7 +56,7 @@ class Card extends React.Component {
                         firebase.database().ref('request/' + lastID).set({
                             type: 'movie',
                             value: movie
-                        })
+                        }).then(window.location.replace(window.location));
                     })
                 }
             }
@@ -180,7 +182,7 @@ class Card extends React.Component {
                                             albums: ArtistAlbum
                                         }
                                     })
-                                })
+                                });
                             }, function (err) {
                                 console.error(err);
                             });
