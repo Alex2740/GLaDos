@@ -46,7 +46,6 @@ class Card extends React.Component {
                 request.open('GET', movieUrl);
                 request.responseType = 'json';
                 request.send();
-                console.log(window.location);
                 
                 request.onload = function () {
                     var movie = request.response;
@@ -62,16 +61,20 @@ class Card extends React.Component {
             }
             
             const result = this.props.details.value.map(key => 
-                <div className="cell small-6">
-                    <img src={key.Poster} alt="Poster" />
-                    <button className="button" type="button" onClick={(e) => getMovie(e, key.imdbID)}>{key.Title}</button>
-                </div>  
+                <div key={key.imdbID.substring(2)} className="cell small-6">
+                    <div className="card search-item">
+                        <img src={key.Poster} alt="Poster" />
+                        <button className="search-item-info" onClick={(e) => getMovie(e, key.imdbID)}>
+                            <span className="search-item-title">{key.Title}<br /><span className="search-item-year">({key.Year})</span></span>
+                        </button>
+                    </div>
+                </div>
             );
-            
+                     
             return (
                 <div className="card animated zoomIn">
                     <div className="card-section">
-                        Quel film recherchez-vous ?
+                        <h3 className="search-movie-title">Quel film recherchez-vous ?</h3>
                     </div>
                     <div className="card-section">
                         <div className="grid-x">
@@ -128,28 +131,76 @@ class Card extends React.Component {
                 rating5 = 'checked';
             }
             
-            
+            function setSizeMoviePoster() {
+                var arrayMoviePoster = document.querySelectorAll("a[data-type = movie-poster]");
+                arrayMoviePoster.forEach(element => {
+                    var moviePoster = element;
+                    var imgUrl = moviePoster.firstElementChild.currentSrc;
+                
+                    var cell = moviePoster.parentElement;
+
+                    var width = cell.offsetWidth;
+                    
+                    var height = cell.parentElement.lastElementChild.firstElementChild.offsetHeight;
+
+                    var span = document.createElement('span');
+                    span.className = 'movie-poster-background';
+                    span.style.height = height + 'px';
+                    span.style.backgroundImage = 'url(' + imgUrl + ')';               
+
+                    if (cell.childElementCount >= 2) {
+                        var elementToRomve = cell.children[0];                   
+                        elementToRomve.remove()
+                    }
+                    
+                    moviePoster.parentNode.insertBefore(span, moviePoster);
+                    moviePoster.style.height = height + 'px';
+                    moviePoster.style.width = width + 'px';
+                    moviePoster.style.width = width + 'px';
+                }); 
+            }
+
+            window.onresize = setSizeMoviePoster;
+
             return (
                 <div className="card animated zoomIn">
                     <div className="grid-x">
                         <div className="cell small-6">
-                            <img src={this.props.details.value.Poster} alt="Poster" />
+                            <a data-type="movie-poster" className="movie-poster" href={'https://imdb.com/title/' + this.props.details.value.imdbID}><img onLoad={setSizeMoviePoster} src={this.props.details.value.Poster} alt="Poster" /></a >
                         </div>
                         <div className="cell small-6">
-                            <h3>{this.props.details.value.Year}</h3>
-                            <h2>{this.props.details.value.Title}</h2>
-                            <span>{this.props.details.value.Genre}</span><span>{this.props.details.value.Runtime}</span>
-                            
-                            <span className={'fa fa-star ' + rating1}></span>
-                            <span className={'fa fa-star ' + rating2}></span>
-                            <span className={'fa fa-star ' + rating3}></span>
-                            <span className={'fa fa-star ' + rating4}></span>
-                            <span className={'fa fa-star ' + rating5}></span>
-                            
-                            ({parseInt(this.props.details.value.imdbRating, 10) / 2}/5)
-                            <p>{this.props.details.value.Plot}</p>
-                            <p>Stars : {this.props.details.value.Actors}</p>
-                            <a href={'https://imdb.com/title/' + this.props.details.value.imdbID} className="button">Plus d'info</a>
+                            <div className="grid-y grid-padding-x">
+                                <div className="cell">
+                                    <h5 className="movie-year">{this.props.details.value.Year}</h5>
+                                </div>
+                                <div className="cell">
+                                    <h3 className="movie-title">{this.props.details.value.Title}</h3>
+                                </div>
+                                <div className="cell">
+                                    <div className="grid-x">
+                                        <div className="cell auto">
+                                            <span className="movie-genre">{this.props.details.value.Genre}</span>
+                                        </div>
+                                        <div className="cell  shrink">
+                                            <span className="movie-runtime">{this.props.details.value.Runtime}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="cell">
+                                    <span className={'fa fa-star ' + rating1}></span>
+                                    <span className={'fa fa-star ' + rating2}></span>
+                                    <span className={'fa fa-star ' + rating3}></span>
+                                    <span className={'fa fa-star ' + rating4}></span>
+                                    <span className={'fa fa-star ' + rating5}></span>
+                                    {parseFloat(this.props.details.value.imdbRating, 10) / 2}/5
+                                </div>
+                                <div className="cell">
+                                    <p>{this.props.details.value.Plot}</p>
+                                </div>
+                                <div className="cell">
+                                    <span><b>Stars :</b> {this.props.details.value.Actors}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -313,7 +364,7 @@ class Card extends React.Component {
                                 </div>
                                 <div className="cell small-12">
                                     <center>
-                                        <h3>{this.props.details.value.name.charAt(0).toUpperCase() + this.props.details.value.name.substring(1).toLowerCase()}</h3>
+                                        <h3 className="pokemon-name">{this.props.details.value.name.charAt(0).toUpperCase() + this.props.details.value.name.substring(1).toLowerCase()}</h3>
                                     </center>
                                 </div>
                                 <div className="cell small-12">
@@ -415,7 +466,7 @@ class Card extends React.Component {
             return (
                 <div className="card animated zoomIn">
                     <div className="card-section">
-                        <h1>{this.props.details.type}</h1>
+                        <h1><important>{this.props.details.type}</important></h1>
                         <p>{this.props.details.value}</p>
                     </div>
                 </div>

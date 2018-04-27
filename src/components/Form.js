@@ -69,7 +69,7 @@ class Form extends React.Component {
 
             } else if (matches[3] === 'film' && matches[4].length > 0 && matches[4].replace(/ /g, "").length > 0) {
                 var search = matches[4];
-                var omdbApiUrl = 'https://omdbapi.com/?apikey=4ac2ef70&s=' + search;
+                var omdbApiUrl = 'https://omdbapi.com/?apikey=4ac2ef70&type=movie&s=' + search;
 
                 var requestOmdb = new XMLHttpRequest();
                 requestOmdb.open('GET', omdbApiUrl);

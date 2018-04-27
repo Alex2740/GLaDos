@@ -1,0 +1,52 @@
+* {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+b, important {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.checked {
+  color: orange;
+}
+
+h2.movie-title {
+  margin: 0px;
+  border-bottom: 1px grey solid;
+  color: rgba(0, 0, 0, 0.87)
+}
+
+h4.movie-year {
+  margin: 0px;
+}
+
+.movie-genre, .movie-runtime {
+  font-size: 15px;
+}
+
+.movie-poster {
+  display: block;
+  position: absolute;
+  top: 0px;
+}
+
+.movie-poster-background {
+  display: block;
+  background-image: url('./poster.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.movie-poster img {
+  position: absolute;
+  top: 50%; /* poussé de la moitié de hauteur du référent */
+  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+  max-height: 321px;
+}

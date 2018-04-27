@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Movie Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../src/foundation.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="search-movie.css" />
+    <script>
+        const search = { "Search": [{ "Title": "The Lego Movie", "Year": "2014", "imdbID": "tt1490017", "Type": "movie", "Poster": "https://ia.media-imdb.com/images/M/MV5BMTg4MDk1ODExN15BMl5BanBnXkFtZTgwNzIyNjg3MDE@._V1_SX300.jpg" }, { "Title": "The LEGO Batman Movie", "Year": "2017", "imdbID": "tt4116284", "Type": "movie", "Poster": "https://ia.media-imdb.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg" }, { "Title": "The Lego Ninjago Movie", "Year": "2017", "imdbID": "tt3014284", "Type": "movie", "Poster": "https://ia.media-imdb.com/images/M/MV5BNDI3MDljMTQtYzBiYS00NDk2LTlhYzUtYmM0NWIyMmZkMDZkXkEyXkFqcGdeQXVyNjk5NDA3OTk@._V1_SX300.jpg" }, { "Title": "Lego Batman: The Movie - DC Super Heroes Unite", "Year": "2013", "imdbID": "tt2465238", "Type": "movie", "Poster": "https://ia.media-imdb.com/images/M/MV5BMjE4MTU5MDk5OF5BMl5BanBnXkFtZTgwNDQ1NzA2MDE@._V1_SX300.jpg" }, { "Title": "A Lego Brickumentary", "Year": "2014", "imdbID": "tt3214286", "Type": "movie", "Poster": "https://ia.media-imdb.com/images/M/MV5BMTA5Njk2MTQ1NjBeQTJeQWpwZ15BbWU4MDM2MDA0NjUx._V1_SX300.jpg" }, { "Title": "Lego: The Adventures of Clutch Powers", "Year": "2010", "imdbID": "tt1587414", "Type": "movie", "Poster": "https://ia.media-imdb.com/images/M/MV5BMjQ1NzM2MDE2Nl5BMl5BanBnXkFtZTcwNjg4NDcxMw@@._V1_SX300.jpg" }, { "Title": "Lego DC Comics Super Heroes: Justice League vs. Bizarro League", "Year": "2015", "imdbID": "tt4189260", "Type": "movie", "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjIzMTYxMjk5MV5BMl5BanBnXkFtZTgwMjY5OTgyNDE@._V1_SX300.jpg" }, { "Title": "Lego Star Wars: The Padawan Menace", "Year": "2011", "imdbID": "tt2005268", "Type": "movie", "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjhmYzlhMTUtM2Q2Ny00Zjc2LThjZDMtMmFhYzUzYzcwYmYyXkEyXkFqcGdeQXVyMjU3MzI1NzI@._V1_SX300.jpg" }, { "Title": "Lego DC Super Heroes: Justice League - Attack of the Legion of Doom!", "Year": "2015", "imdbID": "tt4938416", "Type": "movie", "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNjU5ODc1NzY2MV5BMl5BanBnXkFtZTgwNjk1MDc1NjE@._V1_SX300.jpg" }, { "Title": "Lego DC Comics Superheroes: Justice League - Gotham City Breakout", "Year": "2016", "imdbID": "tt5612702", "Type": "movie", "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMmE2ODEwMTctMjU2YS00Nzg5LWI3ZjgtYWVkYzE4NTFmMmUxXkEyXkFqcGdeQXVyMzk2NTI1Nzk@._V1_SX300.jpg" }], "totalResults": "126", "Response": "True" };
+        const movieSearch = search.Search.map(key =>
+            '<div class="cell small-6">'
+                + '<div class="card search-item">'
+                    + '<img src="' + key.Poster + '" alt="Poster" />'
+                    + '<span class="search-item-info" onclick="console.log(\'coucou\')">'
+                        + '<span class="search-item-title">' + key.Title + '<br/><span class="search-item-year">(' + key.Year + ')</span></span>'
+                    + '</span>'
+                + '</div>'
+            + '</div>'
+        ); 
+    </script>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-x">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <div class="card animated zoomIn">
+                    <div className="card-section">
+                        <h3 class="search-movie-title">Quel film recherchez-vous ?</h3>
+                    </div>
+                    <div class="grid-x">
+                        <script>
+                            for (let index = 0; index < movieSearch.length; index++) {
+                                document.write(movieSearch[index]);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
