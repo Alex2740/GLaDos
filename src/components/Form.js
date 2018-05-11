@@ -98,7 +98,7 @@ class Form extends React.Component {
                 }
             } else if (matches[1] === 'meteo' && matches[2].length > 0 && matches[2].replace(/ /g, "").length > 0) {
                 var city = matches[2];
-                var openWeatherWapUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=fr&appid=64eb78659aea712617898580e5ef45d8';
+                var openWeatherWapUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&lang=fr&appid=64eb78659aea712617898580e5ef45d8';
 
                 var requestOpenWeatherMap = new XMLHttpRequest();
                 requestOpenWeatherMap.open('GET', openWeatherWapUrl);
@@ -108,19 +108,7 @@ class Form extends React.Component {
                     var weather = requestOpenWeatherMap.response;
                     firebase.database().ref('request/' + ref).set({
                         type: 'meteo',
-                        value: {
-                            id: weather.id,
-                            city: weather.name,
-                            description: weather.weather[0].description,
-                            humidity: weather.main.humidity,
-                            pressure: weather.main.pressure,
-                            wind: weather.wind.speed,
-                            temp: {
-                                main: weather.main.temp,
-                                min: weather.main.temp_min,
-                                max: weather.main.temp_max
-                            }
-                        }
+                        value: weather
                     });
                 }
             } else if (matches[0] === 'meteo') {

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Connexion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA6JP-noUCV-ohlPGbAsDTsT-xEQlKUfds",
+            authDomain: "glados-24f68.firebaseapp.com",
+            databaseURL: "https://glados-24f68.firebaseio.com",
+            projectId: "glados-24f68",
+            storageBucket: "glados-24f68.appspot.com",
+            messagingSenderId: "339400463540"
+        };
+        firebase.initializeApp(config);
+        
+        function validForm() {
+            var email = document.getElementById('inputText').value;
+            var password = document.getElementById('inputPassword').value;
+            console.log(email + ':' + password);
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+                console.error(error);
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <form onsubmit="validForm()">
+        <input id="inputText" type="email">
+        <input id="inputPassword" type="password">
+        <input type="submit">
+    </form>
+</body>
+</html>

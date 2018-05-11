@@ -2,12 +2,10 @@ import React from 'react';
 import Card from './Card';
 
 import * as firebase from 'firebase';
-import config from '../config';
 
 class Content extends React.Component {
     constructor() {
         super()
-        firebase.initializeApp(config)
         this.state = {
             loading: true
         }
@@ -34,10 +32,11 @@ class Content extends React.Component {
             return (
                 <div className="container">
                     <div className="grid-x">
-                    <div className="cell small-3"></div>
-                        <div className="cell small-6">
+                        <div className="cell auto"></div>
+                        <div className="cell shrink">
                             {reqs} 
                         </div>
+                        <div className="cell auto"></div>
                     </div>
                 </div>
             )

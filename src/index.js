@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import './foundation.min.css';
 import 'animate.css';
-import './index.css';
+
+import './css/foundation.min.css';
+import './css/index.css';
+import './css/weather-icons.min.css';
+import './css/weather-icons-wind.min.css';
 
 import Header from './components/Header';
 import Content from './components/Content';

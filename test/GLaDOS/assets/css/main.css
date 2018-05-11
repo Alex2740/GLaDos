@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*#region Widget Weather */
+
+.weather-widget {
+    position: relative;
+    /* color: #ffffff; */
+    height: 100px;
+}
+
+.weather-widget .card-image {
+    position: absolute;
+}
+
+.weather-widget-weather {
+    font-size: 17px;
+    position: relative;
+}
+
+.weather-widget-weather i {
+    font-size: 30px;
+}
+
+.weather-widget-temp {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    margin-bottom: 0;
+}
+
+.weather-widget-date {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.weather-widget-city {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/*#endregion */

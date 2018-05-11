@@ -1,8 +1,8 @@
 import React from 'react';
-import OpenWeatherMapLogo from '../img/openweathermap-logo.png';
-import WeatherClean from '../img/weather/day_clear.png';
+/* import OpenWeatherMapLogo from '../img/openweathermap-logo.png'; */
 import noProfil from '../img/no-profil.png';
 import portalCake from '../img/portal-cake.jpg';
+import mumbai from '../img/mumbai.jpg';
 
 import * as firebase from 'firebase';
 import SpotifyWebApi from 'spotify-web-api-node';
@@ -10,31 +10,263 @@ import SpotifyWebApi from 'spotify-web-api-node';
 class Card extends React.Component {
     render() {
         if (this.props.details.type === 'meteo') {
+
+            function getBeafort(kmh) {
+                if (kmh < 1) {
+                    return 0;
+                } else if (kmh < 6) {
+                    return 1;
+                } else if (kmh < 12) {
+                    return 2;
+                } else if (kmh < 20) {
+                    return 3;
+                } else if (kmh < 29) {
+                    return 4;
+                } else if (kmh < 39) {
+                    return 5;
+                } else if (kmh < 50) {
+                    return 6;
+                } else if (kmh < 62) {
+                    return 7;
+                } else if (kmh < 75) {
+                    return 8;
+                } else if (kmh < 89) {
+                    return 9;
+                } else if (kmh < 103) {
+                    return 10;
+                } else if (kmh < 118) {
+                    return 11;
+                } else if (kmh >= 118) {
+                    return 12;
+                } else {
+                    return 'error';
+                }
+            }     
+            
+            function getIcon(id) {
+                var day = id.substring(2);
+                var temps = id.substring(0, 2);
+                if (day === 'n') {
+                    if (temps === '01') {
+                        return 'night-clear';
+                    } else if (temps === '02') {
+                        return 'night-cloudy';
+                    } else if (temps === '03') {
+                        return 'night-cloud';
+                    } else if (temps === '04') {
+                        return 'cloudy';
+                    } else if (temps === '09') {
+                        return 'showers';
+                    } else if (temps === '10') {
+                        return 'night-rain';
+                    } else if (temps === '11') {
+                        return 'night-thunderstorm';
+                    } else if (temps === '13') {
+                        return 'night-snow';
+                    } else if (temps === '50') {
+                        return 'night-fog';
+                    } else {
+                        return 'error';
+                    }
+                } else if (day === 'd') {
+                    if (temps === '01') {
+                        return 'day-sunny';
+                    } else if (temps === '02') {
+                        return 'day-cloudy';
+                    } else if (temps === '03') {
+                        return 'cloud';
+                    } else if (temps === '04') {
+                        return 'cloudy';
+                    } else if (temps === '09') {
+                        return 'showers';
+                    } else if (temps === '10') {
+                        return 'day-rain';
+                    } else if (temps === '11') {
+                        return 'day-thunderstorm';
+                    } else if (temps === '13') {
+                        return 'day-snow';
+                    } else if (temps === '50') {
+                        return 'day-fog';
+                    } else {
+                        return 'error';
+                    }
+                } else {
+                    return 'error';
+                }
+            }
+            
+            function getTime(time) {
+                time = time.substring(11, 13);
+                if (time > 12) {
+                    return time - 12;
+                } else if (time <= 12 && time < 10) {
+                    if (time === 0) {
+                        return 12;
+                    } else {
+                        return time.substring(1);
+                    }
+                } else if (time <= 12 && time >= 10) {
+                    return time;
+                } else {
+                    return 'error';
+                }
+            }
+
             return (
-                <div className="card animated zoomIn">
-                    <div className="card-section">
-                        Météo à {this.props.details.value.city}
-				    </div>
-                    <div className="grid-x">
-                        <div className="cell small-4">
-                            <img src={WeatherClean} alt="description" width="100%" />
-                            <p>{this.props.details.value.description}</p>
-				  	    </div>
-                        <div className="cell small-4">
-                            {this.props.details.value.temp.main}°C
-				  	    </div>
-                        <div className="cell small-4">
-                            Details :
-				  		    Température minimale : {this.props.details.value.temp.max}°C
-                            Température maximale : {this.props.details.value.temp.min}°C
-                            Wind : {this.props.details.value.wind} m/s
-                            Humidity : {this.props.details.value.humidity} %
-                            Pressure : {this.props.details.value.pressure} hPa
-				  	    </div>
+                <div className="app-meteo animated zoomIn">
+                    <div className="header">
+                        <img src={mumbai} alt="" />
+                        <span className="city">
+                            {this.props.details.value.city.name}, {this.props.details.value.city.country}
+                            <i className="fa fa-map-marker"></i>
+                            <span className="today">Today</span>
+                        </span>
+                        <span className="weather">
+                            <span className="temp">
+                                {this.props.details.value.list[0].main.temp}<sup>&deg;</sup>
+                                <span className="unit">c</span>
+                            </span>
+                            <span className="wind-scale">
+                                <table>
+                                    <tr>
+                                        <td>Wind Direction</td>
+                                        <td>
+                                            <i className={'wi wi-wind towards-' + this.props.details.value.list[0].wind.deg + '-deg'}></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wind Scale</td>
+                                        <td>
+                                            <i className={'wi wi-wind-beaufort-' + getBeafort(this.props.details.value.list[0].wind.speed * 3.6)}></i>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <i className={'wi wi-' + getIcon(this.props.details.value.list[0].weather[0].icon)}></i>
+                            <span className="time">
+                                <i className={'wi wi-time-' + getTime(this.props.details.value.list[0].dt_txt)}></i>
+                            </span>
+                            <span className="day">Monday</span>
+                        </span>
                     </div>
-                    <div className="card-section">
-                        Plus d'info sur<a href={'https://openweathermap.org/city/' + this.props.details.value.id}><img src={OpenWeatherMapLogo} alt="logo-openweathermap" /> OpenWeatherMap</a>
-				    </div>
+                    <div className="body">
+                        <span className="title">Weather Stats</span>
+                        <div className="graph">
+                            <ul>
+                                <li className={'today graph-knob-mt-' + Math.round(this.props.details.value.list[0].main.temp)}>
+                                    <span className="graph-temp">
+                                        <i className={'wi wi-' + getIcon(this.props.details.value.list[0].weather[0].icon)}></i>
+                                        {Math.round(this.props.details.value.list[0].main.temp)}<sup>&deg;</sup>
+                                    </span>
+                                    <i className={'wi wi-time-' + getTime(this.props.details.value.list[0].dt_txt)}></i>
+                                </li>
+                                <li className={'graph-knob-mt-' + Math.round(this.props.details.value.list[1].main.temp)}>
+                                    <span className="graph-temp">
+                                        <i className={'wi wi-' + getIcon(this.props.details.value.list[1].weather[0].icon)}></i>
+                                        {Math.round(this.props.details.value.list[1].main.temp)}<sup>&deg;</sup>
+                                    </span>
+                                    <i className={'wi wi-time-' + getTime(this.props.details.value.list[1].dt_txt)}></i>
+                                </li>
+                                <li className={'graph-knob-mt-' + Math.round(this.props.details.value.list[2].main.temp)}>
+                                    <span className="graph-temp">
+                                        <i className={'wi wi-' + getIcon(this.props.details.value.list[2].weather[0].icon)}></i>
+                                        {Math.round(this.props.details.value.list[2].main.temp)}<sup>&deg;</sup>
+                                    </span>
+                                    <i className={'wi wi-time-' + getTime(this.props.details.value.list[2].dt_txt)}></i>
+                                </li>
+                                <li className={'graph-knob-mt-' + Math.round(this.props.details.value.list[3].main.temp)}>
+                                    <span className="graph-temp">
+                                        <i className={'wi wi-' + getIcon(this.props.details.value.list[3].weather[0].icon)}></i>
+                                        {Math.round(this.props.details.value.list[3].main.temp)}<sup>&deg;</sup>
+                                    </span>
+                                    <i className={'wi wi-time-' + getTime(this.props.details.value.list[3].dt_txt)}></i>
+                                </li>
+                                <li className={'graph-knob-mt-' + Math.round(this.props.details.value.list[4].main.temp)}>
+                                    <span className="graph-temp">
+                                        <i className={'wi wi-' + getIcon(this.props.details.value.list[4].weather[0].icon)}></i>
+                                        {Math.round(this.props.details.value.list[4].main.temp)}<sup>&deg;</sup>
+                                    </span>
+                                    <i className={'wi wi-time-' + getTime(this.props.details.value.list[4].dt_txt)}></i>
+                                </li>
+                                <li className={'graph-knob-mt-' + Math.round(this.props.details.value.list[5].main.temp)}>
+                                    <span className="graph-temp">
+                                        <i className={'wi wi-' + getIcon(this.props.details.value.list[5].weather[0].icon)}></i>
+                                        {Math.round(this.props.details.value.list[5].main.temp)}<sup>&deg;</sup>
+                                    </span>
+                                    <i className={'wi wi-time-' + getTime(this.props.details.value.list[5].dt_txt)}></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {/* <div className="footer">
+                        <span className="title">Friends</span>
+                        <ul className="friends">
+                            <li>
+                                <img src="imgs/hardik.jpg" alt="" />
+                                <span className="friends-city-weather">
+                                    <i className="wi wi-night-sprinkle"></i>
+                                    <span className="temp">25<sup>&deg;</sup></span>
+                                </span>
+                                <span className="detail">
+                                    Hardik
+                                    <span className="city">
+                                        Surat
+                                    </span>
+                                    <span className="country">
+                                        India
+                                    </span>
+                                </span>
+                            </li>
+                            <li>
+                                <img src="imgs/virat.jpg" alt="" />
+                                <span className="friends-city-weather">
+                                    <i className="wi wi-night-cloudy-high"></i>
+                                    <span className="temp">21<sup>&deg;</sup></span>
+                                </span>
+                                <span className="detail">
+                                    Virat
+                                    <span className="city">
+                                        Delhi
+                                    </span>
+                                    <span className="country">
+                                        India
+                                    </span>
+                                </span>
+                            </li>
+                            <li>
+                                <img src="imgs/dhoni.jpg" alt="" />
+                                <span className="friends-city-weather">
+                                    <i className="wi wi-night-cloudy-windy"></i>
+                                    <span className="temp">29<sup>&deg;</sup></span>
+                                </span>
+                                <span className="detail">
+                                    Dhoni
+                                <span className="city">
+                                        Ranchi
+                                </span>
+                                    <span className="country">
+                                        India
+                                </span>
+                                </span>
+                            </li>
+                            <li>
+                                <img src="imgs/sachin.jpg" alt="" />>
+                                <span className="friends-city-weather">
+                                    <i className="wi wi-night-sleet"></i>
+                                    <span className="temp">22<sup>&deg;</sup></span>
+                                </span>
+                                <span className="detail">
+                                    Sachin
+                                    <span className="city">
+                                            Mumbai
+                                    </span>
+                                    <span className="country">
+                                        India
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div> */}
                 </div>
             )
         } else if (this.props.details.type === 'movie-search') {
