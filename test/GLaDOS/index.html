@@ -12,31 +12,161 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/main.css"/>
 </head>
 <body>
-    coucou
     <div class="container">
         <div class="row">
-            <div class="col s4">
-                <div class="card weather-widget" data-weather="">
+            <div class="col s6">
+                <div class="card weather-widget" data-weather="01d" data-widget-size="small">
                     <div class="weather-widget-weather">
                         <i class="wi wi-day-sunny"></i>
                         sunny  
                     </div>
-                    <h1 class="weather-widget-temp">36°</h1>
+                    <h3 class="weather-widget-temp">36°</h3>
+                    <span class="weather-widget-min-max">24°/28°</span>
                     <div class="weather-widget-date">
-                        <h3 class="weather-widget-hour">23:53</h3>
-                        Mon 08/25
+                        <h4 class="weather-widget-hour"><span id="horloge"></span></h4>
+                        Mon 08-25
                     </div>
-                    <p class="weather-widget-city">San Fransico</p>
+                    <span class="weather-widget-city">San Fransico</span>
+                    <ul class="weather-widget-forecast">
+                        <li>tue<i class="wi wi-day-sunny"></i></li>
+                        <li>wed<i class="wi wi-rain"></i></li>
+                        <li>thu<i class="wi wi-rain"></i></li>
+                        <li>fri<i class="wi wi-day-sunny"></i></li>
+                    </ul>
                 </div>
             </div>
-            <div class="col s4"></div>
-            <div class="col s4"></div>
-            <div class="col s4"></div>
-            <div class="col s4"></div>
-            <div class="col s4"></div>
+            <div class="col s6">
+                <div class="card weather-widget" data-weather="01n" data-widget-size="medium">
+                    <div class="weather-widget-weather">
+                        <i class="wi wi-night-clear"></i>
+                        sunny
+                    </div>
+                    <h3 class="weather-widget-temp">36°</h3>
+                    <span class="weather-widget-min-max">24°/28°</span>
+                    <div class="weather-widget-date">
+                        <h4 class="weather-widget-hour"><span id="horloge"></span></h4>
+                        Mon 08-25
+                    </div>
+                    <span class="weather-widget-city">San Fransico</span>
+                    <ul class="weather-widget-forecast">
+                        <li>tue<i class="wi wi-day-sunny"></i></li>
+                        <li>wed<i class="wi wi-rain"></i></li>
+                        <li>thu<i class="wi wi-rain"></i></li>
+                        <li>fri<i class="wi wi-day-sunny"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="card weather-widget" data-weather="04d" data-widget-size="large">
+                    <div class="weather-widget-weather">
+                        <i class="wi wi-cloud"></i>
+                        cloudy
+                    </div>
+                    <h3 class="weather-widget-temp">36°</h3>
+                    <span class="weather-widget-min-max">24°/28°</span>
+                    <div class="weather-widget-date">
+                        <h4 class="weather-widget-hour"><span id="horloge"></span></h4>
+                        Mon 08-25
+                    </div>
+                    <span class="weather-widget-city">San Fransico</span>
+                    <ul class="weather-widget-forecast">
+                        <li>tue<i class="wi wi-day-sunny"></i></li>
+                        <li>wed<i class="wi wi-rain"></i></li>
+                        <li>thu<i class="wi wi-rain"></i></li>
+                        <li>fri<i class="wi wi-day-sunny"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="card weather-widget" data-weather="10d" data-widget-size="small">
+                    <div class="weather-widget-weather">
+                        <i class="wi wi-rain"></i>
+                        heavy rain
+                    </div>
+                    <h3 class="weather-widget-temp">36°</h3>
+                    <span class="weather-widget-min-max">24°/28°</span>
+                    <div class="weather-widget-date">
+                        <h4 class="weather-widget-hour"><span id="horloge"></span></h4>
+                        Mon 08-25
+                    </div>
+                    <span class="weather-widget-city">San Fransico</span>
+                    <ul class="weather-widget-forecast">
+                        <li>tue<i class="wi wi-day-sunny"></i></li>
+                        <li>wed<i class="wi wi-rain"></i></li>
+                        <li>thu<i class="wi wi-rain"></i></li>
+                        <li>fri<i class="wi wi-day-sunny"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="card weather-widget" data-weather="13d" data-widget-size="small">
+                    <div class="weather-widget-weather">
+                        <i class="wi wi-snow"></i>
+                        snow
+                    </div>
+                    <h3 class="weather-widget-temp">36°</h3>
+                    <span class="weather-widget-min-max">24°/28°</span>
+                    <div class="weather-widget-date">
+                        <h4 class="weather-widget-hour"><span id="horloge"></span></h4>
+                        Mon 08-25
+                    </div>
+                    <span class="weather-widget-city">San Fransico</span>
+                    <ul class="weather-widget-forecast">
+                        <li>tue<i class="wi wi-day-sunny"></i></li>
+                        <li>wed<i class="wi wi-rain"></i></li>
+                        <li>thu<i class="wi wi-rain"></i></li>
+                        <li>fri<i class="wi wi-day-sunny"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="card weather-widget" data-weather="50d" data-widget-size="small">
+                    <div class="weather-widget-weather">
+                        <i class="wi wi-day-haze"></i>
+                        haze
+                    </div>
+                    <h3 class="weather-widget-temp">36°</h3>
+                    <span class="weather-widget-min-max">24°/28°</span>
+                    <div class="weather-widget-date">
+                        <h4 class="weather-widget-hour"><span id="horloge"></span></h4>
+                        Mon 08/25
+                    </div>
+                    <span class="weather-widget-city">San Fransico</span>
+                    <ul class="weather-widget-forecast">
+                        <li>tue<i class="wi wi-day-sunny"></i></li>
+                        <li>wed<i class="wi wi-rain"></i></li>
+                        <li>thu<i class="wi wi-rain"></i></li>
+                        <li>fri<i class="wi wi-day-sunny"></i></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        
     </div>
+    
+    <script type="text/javascript">
+        var ladate = new Date()
+        document.write("ladate.getDay() = " + ladate.getDay() + "<BR>")
+        var tab_jour = new Array("sun", "mon", "tue", "wed", "thu", "fri", "sat");
+        document.write("Nous sommes un " + tab_jour[ladate.getDay()])
+
+        window.onload = function () {
+            horloge('#horloge');
+        }; 
+
+        function horloge(el) {
+            if (typeof el == "string") { var items = document.querySelectorAll(el); }
+            function actualiser() {
+                var date = new Date();
+                var str = date.getHours();
+                str += ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+                items.forEach(function (element) {
+                    element.innerHTML = str;
+                });
+            }
+            actualiser();
+            setInterval(actualiser, 1000);
+        }
+    </script>
     <script src="./assets/js/main.js"></script>
 </body>
 </html>

@@ -8,42 +8,160 @@ body {
 
 /*#region Widget Weather */
 
+/*#region Widget Weather*/
+
 .weather-widget {
     position: relative;
-    /* color: #ffffff; */
+    color: #ffffff;
     height: 100px;
+    width: 350px;
+    border-radius: 10px;
 }
 
-.weather-widget .card-image {
-    position: absolute;
+.weather-widget[data-weather="01d"] {
+    background: url(../img/clear-day.png);
+    background-size: cover;
+    background-position: right;
+}
+
+.weather-widget[data-weather="01n"] {
+    background: url(../img/clear-night.jpg);
+    background-size: cover;
+    background-position: right;
+}
+
+.weather-widget[data-weather="04d"], .weather-widget[data-weather="04n"], .weather-widget[data-weather="02d"], .weather-widget[data-weather="02n"], .weather-widget[data-weather="03d"], .weather-widget[data-weather="03n"] {
+    background: url(../img/cloud.jpg);
+    background-size: cover;
+    background-position: right;
+}
+
+.weather-widget[data-weather="50n"], .weather-widget[data-weather="50d"] {
+    background: url(../img/haze.jpg);
+    background-size: cover;
+    background-position: right;
+}
+
+.weather-widget[data-weather="10d"], .weather-widget[data-weather="10n"], .weather-widget[data-weather="11d"], .weather-widget[data-weather="11n"] {
+    background: url(../img/rain.jpg);
+    background-size: cover;
+    background-position: right;
+}
+
+ .weather-widget[data-weather="13d"], .weather-widget[data-weather="13n"] {
+    background: url(../img/snow.jpg);
+    background-size: cover;
+    background-position: right;
 }
 
 .weather-widget-weather {
     font-size: 17px;
     position: relative;
+    left: 10px;
+    text-transform: capitalize;
 }
 
 .weather-widget-weather i {
     font-size: 30px;
+    position: relative;
+    top: 7px;
+    margin-right: 10px;
 }
 
 .weather-widget-temp {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 10px;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .weather-widget-date {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 5px;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.weather-widget-hour {
+    margin: 0;
 }
 
 .weather-widget-city {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 5px;
+    right: 10px;
+    text-transform: capitalize;
 }
+
+.weather-widget[data-widget-size="medium"] .weather-widget-forecast, .weather-widget[data-widget-size="medium"] .weather-widget-min-max {
+    display: none;
+}
+/*#endregion */
+
+/*#region Widget Weather Small */
+
+.weather-widget[data-widget-size="small"] {
+    width: 100px;
+    background-position-x: 75%;
+}
+
+.weather-widget[data-widget-size="small"] .weather-widget-weather, .weather-widget[data-widget-size="small"] .weather-widget-city, .weather-widget[data-widget-size="small"] .weather-widget-date, .weather-widget[data-widget-size="small"] .weather-widget-forecast, .weather-widget[data-widget-size="small"] .weather-widget-min-max {
+    display: none;
+}
+
+/*#endregion */
+
+/*#region Widget Weather Large  */
+
+.weather-widget[data-widget-size="large"] {
+    height: 140px;
+}
+
+.weather-widget[data-widget-size="large"] .weather-widget-forecast {
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+}
+
+.weather-widget[data-widget-size="large"] .weather-widget-forecast li {
+    display: block;
+    width: 25%;
+    height: 40px;
+    text-transform: uppercase;
+    border-right: solid 1px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    float: left;
+}
+
+.weather-widget[data-widget-size="large"] .weather-widget-forecast li:last-child {
+    border: none;
+}
+
+.weather-widget[data-widget-size="large"] .weather-widget-forecast li i {
+    margin-left: 5px;
+}
+
+.weather-widget[data-widget-size="large"] .weather-widget-temp {
+    bottom: 62px;
+}
+
+.weather-widget[data-widget-size="large"] .weather-widget-city {
+    bottom: 45px;
+}
+
+.weather-widget[data-widget-size="large"] .weather-widget-min-max {
+    position: absolute;
+    bottom: 45px;
+    left: 10px;
+    display: block;
+    height: 22px;
+}
+
+/*#endregion */
 
 /*#endregion */
